@@ -103,11 +103,10 @@
         {
             "questionNumber": 11,
             "question": "Which HTML tag is used to include external JavaScript files?",
-            "options": [
-               
-                "<link>",
-                "<script>",
-                "<style>"
+            "options": [          
+                "link tag",
+                "script tag",
+                "style tag"
             ],
             "correctAnswer": 1
         },

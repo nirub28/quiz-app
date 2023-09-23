@@ -54,6 +54,9 @@ app.post("/join", async (req, res) => {
       await room.save();
       userId = room.users[1]._id;
       roomId = room._id;
+
+      const usersInRoom = room.users.map((user) => user.name);
+      io.emit("usersInRoom", { users: usersInRoom });
     } else {
       // If no room is available, create a new room and add the user
       const newRoom = new Room({ users: [{ name: userName }] });
@@ -61,10 +64,6 @@ app.post("/join", async (req, res) => {
       userId = newRoom.users[0]._id;
       roomId = newRoom._id;
     }
-
-    const usersInRoom = room.users.map((user) => user.name);
-    io.emit('usersInRoom', { users: usersInRoom });
-
 
     // After adding the user to the room, redirect to the quiz page for that room
     res.redirect(`/quiz/${roomId}/${userId}`);
@@ -92,30 +91,23 @@ app.get("/quiz/:roomId/:userId", async (req, res) => {
   res.render("quiz", { room });
 });
 
-
-
 // Socket.IO logic
 io.on("connection", (socket) => {
-  console.log(`Socket connected: ${socket.id}`);
-
-
+  // console.log(`Socket connected: ${socket.id}`);
 
   socket.on("joinOrCreateRoom", async ({ roomId }) => {
     try {
       const room = await Room.findById(roomId);
 
-      room.completeUserCount=0;
+      room.completeUserCount = 0;
       await room.save();
 
       if (!room) {
-        // Handle room not found
         return;
       }
 
-
-
       if (room.users.length === 2) {
-        console.log("Both users have joined. Starting quiz...");
+        // console.log("Both users have joined. Starting quiz...");
         // Start the quiz here (replace this with your quiz logic)
         const quizData = fs.readFileSync(
           path.join(__dirname, "quiz-questions.json"),
@@ -135,7 +127,7 @@ io.on("connection", (socket) => {
 
         io.emit("startQuiz", selectedQuestions, roomId); // Broadcast to all users in the room
       } else {
-        // Send a message back to the client indicating waiting for another user
+        // Send a message back to the client side indicating waiting for another user
         socket.emit("waitingForUser", "Waiting for another user to join...");
       }
     } catch (error) {
@@ -144,16 +136,15 @@ io.on("connection", (socket) => {
   });
 
   socket.on("submitAnswer", async ({ roomId, userId, selectedAnswers }) => {
-    console.log("room id is:", roomId + " " + "user id:" + userId);
+    // console.log("room id is:", roomId + " " + "user id:" + userId);
 
-    console.log("submiteed answers:", selectedAnswers);
 
     // Find the room and user based on roomId and userId
     const room = await Room.findById(roomId);
 
     if (!room) {
       // Room not found
-      console.error(`Room with ID ${roomId} not found.`);
+      // console.error(`Room with ID ${roomId} not found.`);
       return;
     }
 
@@ -161,17 +152,15 @@ io.on("connection", (socket) => {
     const user = room.users.find((u) => u._id.toString() === userId);
 
     if (!user) {
-      console.log("not getting user");
+      // console.log("not getting user");
       return;
     }
-
-    console.log("will calculate and tell");
 
     // Get the correct answers stored in the room
     const correctAnswers = room.answers;
 
     if (!correctAnswers) {
-      console.error("Correct answers not found in the room.");
+      // console.error("Correct answers not found in the room.");
       return;
     }
 
@@ -181,10 +170,9 @@ io.on("connection", (socket) => {
       if (selectedAnswers[i] === correctAnswers[i]) {
         score += 10; // Increase score by 10 for each correct answer
       }
-      // Continue to the next iteration without modifying the score for null values
     }
 
-    console.log("score is;", score);
+    // console.log("score is;", score);
 
     // Update the user's score in the database
     user.score = score;
@@ -194,47 +182,38 @@ io.on("connection", (socket) => {
     await room.save();
 
     // Check if all users have completed the quiz
-  if (room.completeUserCount == 2) {
-    // Emit scores for both users
-    const userScores = room.users.map((u) => ({
-      userName: u.name,
-      score: u.score,
-    }));
+    if (room.completeUserCount == 2) {
+      // Emit scores for both users
+      const userScores = room.users.map((u) => ({
+        userName: u.name,
+        score: u.score,
+      }));
 
-    console.log("emiting the score", userScores);
-
-
-    // Emit the scores to all connected sockets
-    io.emit("updateScores", userScores);
-  }
-
+      // Emit the scores to all connected sockets
+      io.emit("updateScores", userScores);
+    }
   });
 
-//room delete
-socket.on("deleteRoom", async (roomId) => {
-  try {
-    // Find and delete the room by ID
-    const deletedRoom = await Room.findByIdAndDelete(roomId);
+  //room delete
+  socket.on("deleteRoom", async (roomId) => {
+    try {
+      // Find and delete the room by ID
+      const deletedRoom = await Room.findByIdAndDelete(roomId);
 
-    if (!deletedRoom) {
-      console.error(`Room with ID ${roomId} not found.`);
-    } else {
-      console.log(`Room with ID ${roomId} has been deleted.`);
+      if (!deletedRoom) {
+        // console.error(`Room with ID ${roomId} not found.`);
+        return;
+      } else {
+        // console.log(`Room with ID ${roomId} has been deleted.`);
+        return;
+      }
+    } catch (error) {
+      console.error(`Error deleting room: ${error.message}`);
     }
-  } catch (error) {
-    console.error(`Error deleting room: ${error.message}`);
-  }
-});
-
-
-  
+  });
 
   socket.on("disconnect", () => {
-    console.log(`Socket disconnected: ${socket.id}`);
-    // if (user) {
-    //   room.users = room.users.filter((u) => u.name !== user.name);
-    //   room.save(); // Remove the user from the room
-    // }
+    // console.log(`Socket disconnected: ${socket.id}`);
   });
 });
 

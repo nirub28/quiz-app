@@ -1,15 +1,4 @@
-/* CSS for the hand cursor on options */
-/* #quiz-container ul li {
-    cursor: pointer;
-  }
-   */
-  /* CSS for highlighting the selected option */
-  /* #quiz-container ul li.selected {
-    background-color: green;
-  } */
-  
 
-  /* quiz.css */
 
 body {
   font-family: Arial, sans-serif;
@@ -77,4 +66,3 @@ h1 {
   color: Red;
 }
 
-/* Add more styles as needed */
