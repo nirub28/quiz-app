@@ -62,6 +62,10 @@ app.post("/join", async (req, res) => {
       roomId = newRoom._id;
     }
 
+    const usersInRoom = room.users.map((user) => user.name);
+    io.emit('usersInRoom', { users: usersInRoom });
+
+
     // After adding the user to the room, redirect to the quiz page for that room
     res.redirect(`/quiz/${roomId}/${userId}`);
   } catch (error) {
@@ -76,16 +80,25 @@ app.get("/quiz/:roomId/:userId", async (req, res) => {
   const room = await Room.findById(roomId);
 
   if (!room) {
-    res.status(404).send("Room not found");
+    res.status(404).send(`
+      <p>Room not found.</p>
+      <form action="/" method="get">
+        <button type="submit">Go to Home</button>
+      </form>
+    `);
     return;
   }
 
   res.render("quiz", { room });
 });
 
+
+
 // Socket.IO logic
 io.on("connection", (socket) => {
   console.log(`Socket connected: ${socket.id}`);
+
+
 
   socket.on("joinOrCreateRoom", async ({ roomId }) => {
     try {
@@ -196,6 +209,25 @@ io.on("connection", (socket) => {
   }
 
   });
+
+//room delete
+socket.on("deleteRoom", async (roomId) => {
+  try {
+    // Find and delete the room by ID
+    const deletedRoom = await Room.findByIdAndDelete(roomId);
+
+    if (!deletedRoom) {
+      console.error(`Room with ID ${roomId} not found.`);
+    } else {
+      console.log(`Room with ID ${roomId} has been deleted.`);
+    }
+  } catch (error) {
+    console.error(`Error deleting room: ${error.message}`);
+  }
+});
+
+
+  
 
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);

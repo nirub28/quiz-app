@@ -104,6 +104,27 @@ document.addEventListener("DOMContentLoaded", () => {
     alert(msg);
   });
 
+  // show usesr
+  socket.on('usersInRoom', ({ users }) => {
+    // Clear the previous content
+    user1NameElement.innerHTML = '';
+    user2NameElement.innerHTML = '';
+  
+    if (users.length === 0) {
+      // If no users are available, display "Not available"
+      user1NameElement.textContent = 'Not available';
+      user2NameElement.textContent = 'Not available';
+    } else if (users.length === 1) {
+      // If only one user is available, display their name in the first element
+      user1NameElement.textContent = users[0];
+      user2NameElement.textContent = 'Not available';
+    } else {
+      // If both users are available, display their names in the respective elements
+      user1NameElement.textContent = users[0];
+      user2NameElement.textContent = users[1];
+    }
+  });
+
   socket.on("updateScores", (userScores) => {
     // Update the user scores for both users
     console.log("Received scores:", userScores);
@@ -115,22 +136,30 @@ document.addEventListener("DOMContentLoaded", () => {
     // Determine the winner or if it's a tie
     let resultText = "";
     if (userScores[0].score > userScores[1].score) {
-      resultText = `${userScores[0].userName} is the winner!`;
+      resultText = ` Result is: ${userScores[0].userName} is the winner!`;
     } else if (userScores[0].score < userScores[1].score) {
-      resultText = `${userScores[1].userName} is the winner!`;
+      resultText = ` Result is:  ${userScores[1].userName} is the winner!`;
     } else {
-      resultText = "It's a tie!";
+      resultText = " Result is: It's a tie!";
     }
   
     // Update the quiz container with the result text
     const quizContainer = document.getElementById("quiz-container");
     quizContainer.innerHTML = `<p>${resultText}</p>`;
+
+      // Wait for 15 seconds and then delete the room
+  setTimeout(() => {
+    // Make a call to the server to delete the room
+    socket.emit("deleteRoom", roomId.toString()); 
+  }, 10000); // 15 seconds
+
   });
   
 
   // Event listener for the "Start Quiz" button
   const startQuizButton = document.getElementById("startQuizButton");
   startQuizButton.addEventListener("click", () => {
-    joinOrCreateRoom();
+    startQuizButton.disabled = true;
+    joinOrCreateRoom(); 
   });
 });
