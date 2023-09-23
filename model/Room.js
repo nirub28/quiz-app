@@ -7,6 +7,12 @@ const userSchema = new mongoose.Schema({
 
 const roomSchema = new mongoose.Schema({
   users: [userSchema],
+  answers: [Number],
+  completeUserCount: {
+    type: Number,
+    default: 0, 
+  },
+
 });
 
 const Room = mongoose.model('Room', roomSchema);

@@ -54,13 +54,11 @@
             "questionNumber": 6,
             "question": "Which of the following is not a JavaScript data type?",
             "options": [
-                "Number",
-                "String",
                 "Boolean",
                 "Array",
                 "Tuple"
             ],
-            "correctAnswer": 4
+            "correctAnswer": 2
         },
         {
             "questionNumber": 7,
@@ -88,8 +86,7 @@
             "options": [
                 "//",
                 "/*",
-                "#",
-                "--"
+                "#"
             ],
             "correctAnswer": 0
         },
@@ -107,12 +104,12 @@
             "questionNumber": 11,
             "question": "Which HTML tag is used to include external JavaScript files?",
             "options": [
-                "<script>",
+               
                 "<link>",
-                "<style>",
-                "<div>"
+                "<script>",
+                "<style>"
             ],
-            "correctAnswer": 0
+            "correctAnswer": 1
         },
         {
             "questionNumber": 12,
@@ -120,8 +117,7 @@
             "options": [
                 "'undefined'",
                 "'object'",
-                "'undefined'",
-                "'null'"
+                "'undefined'"
             ],
             "correctAnswer": 2
         },
@@ -131,8 +127,7 @@
             "options": [
                 ".example",
                 "#example",
-                "element.example",
-                ":example"
+                "element.example"
             ],
             "correctAnswer": 0
         },
@@ -150,11 +145,12 @@
             "questionNumber": 15,
             "question": "Which JavaScript method is used to convert a string to an integer?",
             "options": [
-                "parseInt()",
+                
                 "toString()",
-                "toFixed()"
+                "toFixed()",
+                "parseInt()"
             ],
-            "correctAnswer": 0
+            "correctAnswer": 2
         },
         {
             "questionNumber": 16,
@@ -180,12 +176,12 @@
             "questionNumber": 18,
             "question": "How do you select all the content in most applications or text editors?",
             "options": [
-                "Press Ctrl+A",
+                
                 "Press Ctrl+X",
                 "Press Ctrl+Y",
-                "Press Ctrl+C"
+                "Press Ctrl+A"
             ],
-            "correctAnswer": 0
+            "correctAnswer":2
         },
         {
             "questionNumber": 19,
@@ -201,12 +197,12 @@
             "questionNumber": 20,
             "question": "Which of the following is a valid CSS property?",
             "options": [
-                "background-color",
+                
                 "innerHTML",
-                "getElementById",
-                "appendChild"
+                "background-color",
+                "getElementById"
             ],
-            "correctAnswer": 0
+            "correctAnswer": 1
         }
     ]
 }

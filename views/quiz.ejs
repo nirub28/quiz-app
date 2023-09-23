@@ -1,6 +1,12 @@
 <script src="/socket.io/socket.io.js"></script>
+<link rel="stylesheet" href="/css/quiz.css" />
 
 <h1>Quiz Room</h1>
+
+<div id="timer">
+    <p>Time left: <span id="countdown">2</span> seconds</p>
+  </div>
+  
 
 <!-- Display quiz questions and user scores here -->
 <div id="quiz-container">
@@ -9,15 +15,22 @@
 
 <div id="userScores">
   <!-- User scores and results go here -->
-  <button id="colorChangeButton">Change Color</button>
   <button id="startQuizButton">Start Quiz</button>
 
+  <!-- User 1 score -->
+  <div>
+    <p>User 1: <span id="user1Name"></span></p>
+    <p>Score: <span id="user1ScoreValue"></span></p>
+  </div>
+
+  <!-- User 2 score -->
+  <div>
+    <p>User 2: <span id="user2Name"></span></p>
+    <p>Score: <span id="user2ScoreValue"></span></p>
+  </div>
 </div>
 
 
 
-<!-- Include any additional content or quiz-related elements here -->
-
 <!-- JavaScript for handling quiz logic -->
 <script src="/js/client.js"></script>
-
