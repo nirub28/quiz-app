@@ -1,0 +1,212 @@
+{
+    "questions": [
+        {
+            "questionNumber": 1,
+            "question": "What does HTML stand for?",
+            "options": [
+                "Hyper Text Markup Language",
+                "Highly Typed Markdown Language",
+                "Hyperlink and Text Markup Language"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 2,
+            "question": "Which CSS property is used to control the text size?",
+            "options": [
+                "font-size",
+                "text-size",
+                "font-style"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 3,
+            "question": "What does CSS stand for?",
+            "options": [
+                "Cascading Style Sheets",
+                "Computer Style Sheets",
+                "Creative Style Sheets"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 4,
+            "question": "In JavaScript, what is a variable?",
+            "options": [
+                "A container for storing data values",
+                "A type of function",
+                "An HTML element"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 5,
+            "question": "What is the result of the following JavaScript expression: 5 + '5'?",
+            "options": [
+                "10",
+                "'55'",
+                "TypeError"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "questionNumber": 6,
+            "question": "Which of the following is not a JavaScript data type?",
+            "options": [
+                "Number",
+                "String",
+                "Boolean",
+                "Array",
+                "Tuple"
+            ],
+            "correctAnswer": 4
+        },
+        {
+            "questionNumber": 7,
+            "question": "What is the purpose of the 'console.log()' function in JavaScript?",
+            "options": [
+                "To print output to the console",
+                "To create an alert",
+                "To display a message in the browser"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 8,
+            "question": "Which method is used to remove the last element from an array in JavaScript?",
+            "options": [
+                "pop()",
+                "shift()",
+                "splice()"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 9,
+            "question": "Which symbol is used for single-line comments in JavaScript?",
+            "options": [
+                "//",
+                "/*",
+                "#",
+                "--"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 10,
+            "question": "What is the purpose of the 'document.getElementById()' method in JavaScript?",
+            "options": [
+                "To get an HTML element by its id",
+                "To create a new element",
+                "To change the document's title"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 11,
+            "question": "Which HTML tag is used to include external JavaScript files?",
+            "options": [
+                "<script>",
+                "<link>",
+                "<style>",
+                "<div>"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 12,
+            "question": "What is the result of the following JavaScript expression: typeof undefined;",
+            "options": [
+                "'undefined'",
+                "'object'",
+                "'undefined'",
+                "'null'"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "questionNumber": 13,
+            "question": "In CSS, how do you select an element with the class 'example'?",
+            "options": [
+                ".example",
+                "#example",
+                "element.example",
+                ":example"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 14,
+            "question": "What does the acronym 'API' stand for?",
+            "options": [
+                "Application Programming Interface",
+                "Advanced Programming Interface",
+                "Application Program Integration"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 15,
+            "question": "Which JavaScript method is used to convert a string to an integer?",
+            "options": [
+                "parseInt()",
+                "toString()",
+                "toFixed()"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 16,
+            "question": "What does the 'git' command 'git clone' do?",
+            "options": [
+                "Create a copy of a remote repository",
+                "Commit changes to the repository",
+                "Delete a branch"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 17,
+            "question": "What does the acronym 'URL' stand for?",
+            "options": [
+                "Uniform Resource Locator",
+                "Universal Remote Locator",
+                "Uniform Registry Language"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 18,
+            "question": "How do you select all the content in most applications or text editors?",
+            "options": [
+                "Press Ctrl+A",
+                "Press Ctrl+X",
+                "Press Ctrl+Y",
+                "Press Ctrl+C"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 19,
+            "question": "What is the purpose of the 'localStorage' object in JavaScript?",
+            "options": [
+                "To store key-value pairs in a web browser",
+                "To fetch data from a server",
+                "To create animations"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "questionNumber": 20,
+            "question": "Which of the following is a valid CSS property?",
+            "options": [
+                "background-color",
+                "innerHTML",
+                "getElementById",
+                "appendChild"
+            ],
+            "correctAnswer": 0
+        }
+    ]
+}
