@@ -21,6 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     socket.emit("joinOrCreateRoom", { roomId });
   };
 
+  // Event listener for the "Start Quiz" button
+    const startQuizButton = document.getElementById("startQuizButton");
+    startQuizButton.addEventListener("click", () => {
+    joinOrCreateRoom();
+  });
+
   const displayQuestion = (questions, quizRoomId) => {
     currentQuestionIndex++;
     let countdown = 10; // Initial countdown time in seconds
@@ -101,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     alert(msg);
   });
 
+
   // show user
   socket.on("usersInRoom", ({ users }) => {
     // Clear the previous content
@@ -143,17 +150,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const quizContainer = document.getElementById("quiz-container");
     quizContainer.innerHTML = `<p>${resultText}</p>`;
 
-    // Wait for 15 seconds and then delete the room
+    // Wait for 5 seconds and then delete the room
     setTimeout(() => {
       // Make a call to the server to delete the room
       socket.emit("deleteRoom", roomId.toString());
-    }, 15000); // 15 seconds
+    }, 5000); // 5 seconds
   });
 
-  // Event listener for the "Start Quiz" button
-  const startQuizButton = document.getElementById("startQuizButton");
-  startQuizButton.addEventListener("click", () => {
-    startQuizButton.disabled = true;
-    joinOrCreateRoom();
-  });
 });

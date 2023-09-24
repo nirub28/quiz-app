@@ -18,20 +18,12 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-mongoose.connect("mongodb://localhost/quiz-app", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
+
+const db = require("./config/mongoose");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", function () {
-  console.log("Connected to MongoDB");
-});
 
 // Serve the home page
 app.get("/", (req, res) => {
@@ -97,6 +89,8 @@ io.on("connection", (socket) => {
 
   socket.on("joinOrCreateRoom", async ({ roomId }) => {
     try {
+
+
       const room = await Room.findById(roomId);
 
       room.completeUserCount = 0;

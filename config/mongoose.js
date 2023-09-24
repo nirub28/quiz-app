@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");  // data base connection
 
-mongoose.connect("mongodb://127.0.0.1:27017/quiz");
+mongoose.connect("mongodb+srv://niru:niru@quizz.dughfbw.mongodb.net/quiz?retryWrites=true&w=majority");
+
+////mongodb://127.0.0.1:27017/quiz
 
 const db = mongoose.connection;
 
